@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { createUser } from "../../apis/user.js";
 import { Link } from "react-router-dom";
 import {
   Layout,
@@ -12,6 +14,19 @@ import {
 } from "../atoms/login";
 
 const SignUp = () => {
+  const [form, setForm] = useState({});
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const newForm = {
+      ...form,
+      [name]: value,
+    };
+    setForm(newForm);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    createUser(form);
+  };
   return (
     <Layout>
       <Main>
@@ -19,11 +34,28 @@ const SignUp = () => {
           <LogoWrapper>
             <Logo src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png" />
           </LogoWrapper>
-          <Form>
-            <InputText name="email" placeholder="Mobile Number or Email" />
-            <InputText name="name" placeholder="Full name" />
-            <InputText name="user_name" placeholder="Username" />
-            <InputText name="password" placeholder="Password" type="password" />
+          <Form onSubmit={handleSubmit}>
+            <InputText
+              name="email"
+              placeholder="Mobile Number or Email"
+              onChange={handleChange}
+            />
+            <InputText
+              name="name"
+              placeholder="Full name"
+              onChange={handleChange}
+            />
+            <InputText
+              name="user_name"
+              placeholder="Username"
+              onChange={handleChange}
+            />
+            <InputText
+              name="password"
+              placeholder="Password"
+              type="password"
+              onChange={handleChange}
+            />
             <BtnLogin>Sign up</BtnLogin>
           </Form>
         </Box>
