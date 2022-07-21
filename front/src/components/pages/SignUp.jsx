@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../apis/user.js";
-import { Link } from "react-router-dom";
+
 import {
   Layout,
   Main,
@@ -14,6 +15,7 @@ import {
 } from "../atoms/login";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,9 +25,23 @@ const SignUp = () => {
     };
     setForm(newForm);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    createUser(form);
+
+    const { user_name, password, confirmPassword } = form;
+    if (user_name.length < 4)
+      return alert("Your username must be at least 4 characters long.");
+    if (password !== confirmPassword)
+      return alert("password confirmation doesn't match password");
+
+    const { success, message } = await createUser(form);
+    if (success) {
+      alert("Welcome");
+      navigate("/login");
+    } else {
+      alert(message);
+      setForm((prev) => ({ ...prev, user_name: "" }));
+    }
   };
   return (
     <Layout>
@@ -36,16 +52,12 @@ const SignUp = () => {
           </LogoWrapper>
           <Form onSubmit={handleSubmit}>
             <InputText
-              name="email"
-              placeholder="Mobile Number or Email"
-              onChange={handleChange}
-            />
-            <InputText
               name="name"
               placeholder="Full name"
               onChange={handleChange}
             />
             <InputText
+              value={form.user_name}
               name="user_name"
               placeholder="Username"
               onChange={handleChange}
@@ -53,6 +65,12 @@ const SignUp = () => {
             <InputText
               name="password"
               placeholder="Password"
+              type="password"
+              onChange={handleChange}
+            />
+            <InputText
+              name="confirmPassword"
+              placeholder="Confirm password"
               type="password"
               onChange={handleChange}
             />
