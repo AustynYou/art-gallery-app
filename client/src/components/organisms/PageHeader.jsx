@@ -5,8 +5,8 @@ import { ModalAddPost } from "./modals";
 
 import { getMyInfo } from "../../apis/user";
 
-import { faHouse, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faEdit } from "@fontawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fontawesome/react-fontawesome";
 
 const PageHeader = ({ data }) => {
   const [showModalAddPost, setShowModalAddPost] = useState(false);
