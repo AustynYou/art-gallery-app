@@ -5,7 +5,7 @@ import { ModalAddPost } from "./modals";
 
 import { getMyInfo } from "../../apis/user";
 
-import { faHouse, faEdit } from "@fortawesome/free-solid-svg-icons";
+// import { faHouse, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PageHeader = ({ data }) => {
