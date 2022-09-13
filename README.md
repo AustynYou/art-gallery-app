@@ -1,6 +1,6 @@
 <h1>Art Gallery - Social Media App</h1>
 
-## Implemented functions
+## Implemented features
 
 1. Signup page
 2. Login page
