@@ -50,7 +50,7 @@ const MainPostList = ({ data }) => {
                     <HeaderName>{name}</HeaderName>
                   </article>
                   <NavItem ref={btnEl} className={id}>
-                    {/* <EillpsisIcon onClick={() => setOpen(!open)} /> */}
+                    <EillpsisIcon onClick={() => setOpen(!open)} />
                     {open && (
                       <DropdownMenu>
                         <DropdownItem onClick={handleDropdownItemClick}>
