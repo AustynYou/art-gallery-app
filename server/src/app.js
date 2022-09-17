@@ -11,7 +11,7 @@ const app = express();
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cors(["http://localhost:3000", "art-gallery-app"]));
+app.use(cors(["http://localhost:3000"]));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
