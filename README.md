@@ -16,15 +16,18 @@
 
 ## Used skills
 
-1. React
-2. styled-component
-3. font-awesome
-4. axios
-5. REST apis
-6. Recoil
-7. node.js + express
-8. jwt
-9. AWS, multer, multerS3
-10. .env
-11. mysql2
-12. MySQL Workbench
+1. Responsive Web Design
+2. React Hooks
+3. react-router-dom: Outlet, Link, useNavigate
+4. styled-component
+5. font-awesome
+6. axios
+7. REST apis
+8. Web APIs: FileReader(), FormData()
+9. Recoil
+10. node.js + express
+11. Bcrypt, JWT
+12. AWS, multer, multerS3
+13. .env
+14. mysql2
+15. MySQL Workbench
