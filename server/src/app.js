@@ -13,7 +13,7 @@ import uploadRouter from "./routes/upload.js";
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
-  app.use(morgan("combined"));
+  app.use(logger("combined"));
   app.use(hpp());
   app.use(helmet());
 } else {
