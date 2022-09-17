@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../../apis/user.js";
 
@@ -18,6 +18,12 @@ import {
 const SignUp = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `Signup Page`;
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     const newForm = {

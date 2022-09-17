@@ -27,6 +27,11 @@ const Profile = () => {
   const { profile_image, name, user_name, memo } = form;
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `My profile`;
+  }, []);
+
+  useEffect(() => {
     refreshInfo();
   }, []);
 

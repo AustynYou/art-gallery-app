@@ -29,6 +29,11 @@ const EditProfile = () => {
   const { profile_image, name, user_name, memo } = form;
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `Edit profile`;
+  }, []);
+
+  useEffect(() => {
     refreshInfo();
   }, []);
 

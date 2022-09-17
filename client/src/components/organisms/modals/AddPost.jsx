@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Backdrop, ModalContainer } from "../../atoms/modal";
 import { postPosts } from "../../../apis/post";
@@ -11,6 +11,11 @@ const ModalAddPost = ({ onClose }) => {
   const [imageList, setImageList] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `New Post`;
+  }, []);
 
   const handleClick = () => {
     fileEl.current.click();

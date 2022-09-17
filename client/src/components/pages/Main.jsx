@@ -5,6 +5,12 @@ import { getPostsMain } from "../../apis/post";
 
 const Main = () => {
   const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `Main Page`;
+  }, []);
+
   useEffect(() => {
     refreshList();
   }, []);

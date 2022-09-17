@@ -15,6 +15,11 @@ const ModalEditPost = ({ onClose }) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `New Post`;
+  }, []);
+
+  useEffect(() => {
     refreshList();
   }, []);
 
