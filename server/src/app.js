@@ -1,4 +1,5 @@
 import express from "express";
+import morgan from "morgan";
 import logger from "morgan";
 import cors from "cors";
 import hpp from "hpp";
@@ -12,7 +13,7 @@ import uploadRouter from "./routes/upload.js";
 const app = express();
 
 if (process.env.NODE_ENV === "production") {
-  app.use(logger("combined"));
+  app.use(morgan("combined"));
   app.use(hpp());
   app.use(helmet());
 } else {
