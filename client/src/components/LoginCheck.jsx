@@ -5,7 +5,7 @@ import { loginState } from "../stores/index";
 
 const LoginCheck = () => {
   const navigate = useNavigate();
-  const isLogin = useRecoilValue(loginState);
+  const isLogin = useRecoilValue(loginState); // 
 
   useEffect(() => {
     if (!isLogin) {
@@ -13,7 +13,7 @@ const LoginCheck = () => {
     }
   }, []);
 
-  return isLogin && <Outlet />;
+  return isLogin && <Outlet />; // Outlet: used as a placeholder which can render its child routes
 };
 
 export default LoginCheck;

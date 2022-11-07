@@ -10,4 +10,5 @@ const conn = mysql.createConnection({
   database: process.env.MYSQL_DB,
 });
 
+// be able to use async/await when trying to connect with DB
 export default conn.promise();

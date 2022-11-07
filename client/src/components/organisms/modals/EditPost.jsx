@@ -2,31 +2,24 @@ import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Backdrop, ModalContainer } from "../../atoms/modal";
 
-import { getPostsMain } from "../../../apis/post";
 import { postPosts } from "../../../apis/post";
 import { uploadImage } from "../../../apis/upload";
 
-import { ReactComponent as IconMedia } from "../../../assets/images/media.svg";
-
-const ModalEditPost = ({ onClose }) => {
+const ModalEditPost = ({ postList, idx, onClose }) => {
   const fileEl = useRef(null);
+
   const [imageList, setImageList] = useState([]);
-  const [isSelected, setIsSelected] = useState(false);
   const [content, setContent] = useState("");
 
   useEffect(() => {
     const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `New Post`;
+    titleElement.innerHTML = `Edit Post`;
   }, []);
 
   useEffect(() => {
-    refreshList();
+    setContent(postList[idx].content);
+    setImageList(postList[idx].imageList);
   }, []);
-
-  const refreshList = async () => {
-    const { postList } = await getPostsMain();
-    console.log(postList);
-  };
 
   const handleClick = () => {
     fileEl.current.click();
@@ -42,7 +35,6 @@ const ModalEditPost = ({ onClose }) => {
       reader.onloadend = () => {
         // console.log(reader.result);
         setImageList((prev) => [...prev, { preview: reader.result, file }]);
-        setIsSelected(true);
       };
       reader.readAsDataURL(file);
     }
@@ -70,14 +62,15 @@ const ModalEditPost = ({ onClose }) => {
           Edit post
           <BtnSubmit onClick={handleSubmit}>Share</BtnSubmit>
         </Header>
+        {imageList.map((image, id) => (
+          <img src={image} key={id} />
+        ))}
         {imageList.map(({ preview }) => (
           <img src={preview} key={preview} />
         ))}
         <Main>
-          {!isSelected && <IconMedia />}
-
           <Guide>Choose File</Guide>
-          <Button onClick={handleClick}> Select from your device</Button>
+          <Button onClick={handleClick}>Select from your device</Button>
           <InputFile
             ref={fileEl}
             type="file"

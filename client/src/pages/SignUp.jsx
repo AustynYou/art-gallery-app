@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUser } from "../../apis/user.js";
+import { createUser } from "../apis/user.js";
 
 import {
   Layout,
@@ -13,15 +13,14 @@ import {
   InputText,
   BtnLogin,
   SecondBox,
-} from "../atoms/login";
+} from "../components/atoms/login";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({});
 
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `Signup Page`;
+    document.title = `Signup Page`;
   }, []);
 
   const handleChange = (e) => {
@@ -29,25 +28,35 @@ const SignUp = () => {
     const newForm = {
       ...form,
       [name]: value,
+      /*{
+       *  name: value,
+       *  user_name: value,
+       *  password: value
+       *  confirmPassword: value
+       * } */
     };
     setForm(newForm);
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Blocking default action such as page moving when the form is submitted.
 
     const { user_name, password, confirmPassword } = form;
+
+    // Validation
     if (user_name.length < 4)
       return alert("Your username must be at least 4 characters long.");
     if (password !== confirmPassword)
       return alert("password confirmation doesn't match password");
 
+    // createUser API (1)sends form which has user info to the server
+    // and it (2)returns the responses received from the server
     const { success, message } = await createUser(form);
     if (success) {
       alert("Welcome");
       navigate("/login");
     } else {
-      alert(message);
-      setForm((prev) => ({ ...prev, user_name: "" }));
+      alert(message); // Duplicate Username.
+      setForm((prev) => ({ ...prev, user_name: "" })); // Empty the value of user_name input for user.
     }
   };
   return (

@@ -10,7 +10,7 @@ const MainPostImageList = ({ data }) => {
     const onResize = () => {
       const { width } = window.getComputedStyle(containerEl.current);
       setContainerWidth(width.slice(0, -2));
-      console.log(width);
+      // console.log(width);
     };
     onResize();
     window.addEventListener("resize", onResize);

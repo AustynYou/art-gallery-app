@@ -11,7 +11,7 @@ export const getPostsMain = async (req, res) => {
     JOIN image ON image.post_id = post.id
     GROUP BY post.id
     ORDER BY post.created_at DESC
-    LIMIT 15;
+    LIMIT 30;
   `;
 
   const [rows] = await conn.query(query);
@@ -36,6 +36,7 @@ export const postPosts = async (req, res) => {
     return res.status(401).send({ success: false });
   }
   const { userId } = payload;
+  console.log(payload);
 
   const { fileList, content } = req.body;
 
@@ -56,11 +57,13 @@ export const postPosts = async (req, res) => {
   });
 
   await Promise.all(promiseList);
+  // Promise.all() = Promise를 병렬로 처리한다. -> 왜 병렬로 처리를 했냐? 이유가 뭐냐?
 
   res.send({ success: true });
 };
 
-export const getUsersMyPost = async (req, res) => {
+// Edit a post
+export const putPostsMyPost = async (req, res) => {
   const token = req.headers.authorization;
 
   let payload;
@@ -72,17 +75,45 @@ export const getUsersMyPost = async (req, res) => {
     return res.status(401).send({ success: false });
   }
   const { userId } = payload;
+  const { id, fileList, content } = req.body;
 
   const query = `
-    SELECT id, content, user_id 
-    FROM post WHERE user_id = ${userId};
+    UPDATE post 
+    set user_id = '${userId}', content = '${content}'
+    WHERE id = ${id}
+  `; // must use quotation mark when using string type
+
+  await conn.query(query);
+
+  const promiseList = fileList.map((file) => {
+    const query2 = `
+      INSERT INTO image(post_id, url)
+      VALUES(${id}, "${file}");
   `;
+    return conn.query(query2);
+  });
+  await Promise.all(promiseList);
 
-  const [rows] = await conn.query(query);
-  const [user] = rows;
-
-  // postList[i].user_id = user.id
-  // postList[i].id =
-
-  res.send({ user });
+  res.send({ success: true });
 };
+
+export const deletePostsMyPost = async (req, res) => {
+  const token = req.headers.authorization;
+
+  let payload;
+  try {
+    payload = jwt.verify(token, secretKey);
+  } catch (e) {
+    console.log(e);
+    console.log(token);
+    return res.status(401).send({ success: false });
+  }
+
+  const { id } = req.body;
+  const query = `
+    DELETE FROM post
+    WHERE id = ${id}
+  `;
+  await conn.query(query);
+  res.send({ success: true });
+}

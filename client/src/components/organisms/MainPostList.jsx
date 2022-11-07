@@ -3,35 +3,51 @@ import MainPostImageList from "./MainPostImageList";
 import moment from "moment";
 import "moment/locale/en-ca";
 
-import { ReactComponent as EillpsisIcon } from "../../icon/ellipsis-svgrepo-com.svg";
-
 import { useState, useRef } from "react";
 
 import { ModalEditPost } from "./modals";
 
-import { Backdrop } from "../atoms/modal";
-import { atom } from "recoil";
-
-const MainPostList = ({ data }) => {
+const MainPostList = ({ postList }) => {
   const [open, setOpen] = useState(false);
   const [showModalEditPost, setShowModalEditPost] = useState(false);
-  const btnEl = useRef(null);
+  const [postIdx, setPostIdx] = useState(-1);
+  const postEl = useRef(null);
 
   const setTime = (e) => {
     return moment(e).format(`llll`);
   };
 
-  const handleDropdownItemClick = () => {
+  const goEdit = (e) => {
     setOpen(!open);
+    let thisDropdownMenu = e.target.parentElement;
+    if (!open) {
+      thisDropdownMenu.style.display = "flex";
+    } else {
+      thisDropdownMenu.style.display = "none";
+    }
+
+    let posts = document.querySelectorAll("div > article");
+    let thisPost =
+      e.target.parentElement.parentElement.parentElement.parentElement;
+    for (let idx = 0; idx < posts.length; idx++) {
+      if (posts[idx] === thisPost) {
+        setPostIdx(idx);
+      }
+    }
     setShowModalEditPost(true);
   };
 
+  const handleClickDelete = (e) =>{
+    alert("Are you sure to delete this post?")
+    let thisPost = e.target.parentElement.parentElement.parentElement.parentElement;
+    thisPost.remove();
+  }
+
   return (
     <>
-      {open && <Backdrop onClick={() => setOpen(!open)} />}
       <List>
-        {data &&
-          data.map(
+        {postList &&
+          postList.map(
             ({
               id,
               name,
@@ -41,7 +57,7 @@ const MainPostList = ({ data }) => {
               created_at,
               user_id,
             }) => (
-              <Post key={id}>
+              <Post ref={postEl} key={id}>
                 <Header>
                   <article>
                     <ProfileImageWrapper>
@@ -49,16 +65,23 @@ const MainPostList = ({ data }) => {
                     </ProfileImageWrapper>
                     <HeaderName>{name}</HeaderName>
                   </article>
-                  <NavItem ref={btnEl} className={id}>
-                    <EillpsisIcon onClick={() => setOpen(!open)} />
-                    {open && (
-                      <DropdownMenu>
-                        <DropdownItem onClick={handleDropdownItemClick}>
-                          Edit
-                        </DropdownItem>
-                        <DropdownItem>Delete</DropdownItem>
-                      </DropdownMenu>
-                    )}
+                  <NavItem className={id}>
+                    <EllipsisIcon
+                      src={require("../../icon/ellipsis.png")}
+                      onClick={async (e) => {
+                        setOpen(!open);
+                        let thisDropdownMenu = e.target.nextElementSibling;
+                        if (!open) {
+                          thisDropdownMenu.style.display = "flex";
+                        } else {
+                          thisDropdownMenu.style.display = "none";
+                        }
+                      }}
+                    />
+                    <DropdownMenu>
+                      <DropdownItem onClick={goEdit}>Edit</DropdownItem>
+                      <DropdownItem onClick={handleClickDelete}>Delete</DropdownItem>
+                    </DropdownMenu>
                   </NavItem>
                 </Header>
                 <MainPostImageList data={imageList} />
@@ -71,35 +94,39 @@ const MainPostList = ({ data }) => {
             )
           )}
         {showModalEditPost && (
-          <ModalEditPost onClose={() => setShowModalEditPost(false)} />
+          <ModalEditPost
+            postList={postList}
+            idx={postIdx}
+            onClose={() => setShowModalEditPost(false)}
+          />
         )}
       </List>
     </>
   );
 };
 
+const EllipsisIcon = styled.img`
+  width: 20px;
+`;
+
 const NavItem = styled.div`
   position: relative;
 `;
 
 const DropdownMenu = styled.ul`
-  position: fixed;
-  top: 50%;
-  left: 50%;
+  position: absolute;
+  top: 250%;
+  left: -400%;
   z-index: 1000;
-  width: 50vh;
-  display: flex;
+  width: 20vh;
+  /* display: flex; */
   flex-direction: column;
   transform: translate(-50%, -50%);
-  /* width: 200px; */
   background-color: white;
   padding: 0;
-  border: none;
-  border-radius: 20px;
-
-  /* &.close {
-    display: none;
-  } */
+  border: 1px solid #dbdbdb;
+  border-radius: 7px;
+  display: none;
 `;
 const DropdownItem = styled.li`
   display: flex;

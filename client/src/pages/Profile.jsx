@@ -9,7 +9,6 @@ import {
   Row,
   Left,
   Right,
-  UserName,
   OutputText,
   OutputTextarea,
   ProfileImageWrapper,
@@ -17,7 +16,7 @@ import {
   Button,
 } from "./profileCSS";
 
-import { getMyInfo } from "../../apis/user";
+import { getMyInfo } from "../apis/user";
 const Profile = () => {
   const [form, setForm] = useState({
     name: "",
@@ -27,8 +26,7 @@ const Profile = () => {
   const { profile_image, name, user_name, memo } = form;
 
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `My profile`;
+    document.title = `My profile`;
   }, []);
 
   useEffect(() => {

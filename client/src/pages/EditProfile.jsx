@@ -15,9 +15,10 @@ import {
   InputText,
   Textarea,
 } from "./profileCSS";
+import { useNavigate } from "react-router-dom";
 
-import { getMyInfo, patchMyProfileImage, putMyInfo } from "../../apis/user";
-import { uploadImage } from "../../apis/upload";
+import { getMyInfo, patchMyProfileImage, putMyInfo } from "../apis/user";
+import { uploadImage } from "../apis/upload";
 
 const EditProfile = () => {
   const fileEl = useRef(null);
@@ -28,9 +29,10 @@ const EditProfile = () => {
   });
   const { profile_image, name, user_name, memo } = form;
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `Edit profile`;
+    document.title = `Edit profile`;
   }, []);
 
   useEffect(() => {
@@ -40,6 +42,7 @@ const EditProfile = () => {
   const refreshInfo = async () => {
     const result = await getMyInfo();
     setForm(result.user);
+    console.log(result.user);
   };
 
   const handleFileChange = async (e) => {
@@ -57,14 +60,14 @@ const EditProfile = () => {
   const handleSubmit = (e) => {
     putMyInfo(form);
     alert("Successfully Edited!!");
-    window.history.back();
+    navigate(-1);
   };
 
   return (
     <Container>
       <SideMenu>
         <article>
-          <Cancel onClick={() => window.history.back()}>Cancel</Cancel>
+          <Cancel onClick={() => navigate(-1)}>Cancel</Cancel>
           <Menu>Edit profile</Menu>
           <Button onClick={handleSubmit}>Done</Button>
         </article>

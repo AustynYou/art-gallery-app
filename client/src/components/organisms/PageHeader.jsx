@@ -8,7 +8,7 @@ import { getMyInfo } from "../../apis/user";
 import { faHouse, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PageHeader = ({ data }) => {
+const PageHeader = () => {
   const [showModalAddPost, setShowModalAddPost] = useState(false);
   const [profile, setProfile] = useState({});
   const { profile_image } = profile;
@@ -55,6 +55,7 @@ const PageHeader = ({ data }) => {
       </Header>
       <OutletWrapper>
         <Outlet />
+        {/* Route of PageHeader's "children": Profile, EditProfile, Main */}
       </OutletWrapper>
       {showModalAddPost && (
         <ModalAddPost onClose={() => setShowModalAddPost(false)} />
