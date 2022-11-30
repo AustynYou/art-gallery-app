@@ -48,6 +48,7 @@ const LogIn = () => {
     // Store token in browser localStorage to keep user logged in after page refresh
     // Now even if the session (process, tab, browser) is terminated, the token will still be not deleted.
     // And then when calling any API that requires authorization, user is authorizated with the token in the header.
+    // set the token to localStorage
     localStorage.token = token; // this will be managed by Recoil which is a state management library
     setIsLogin(true);
     alert("Now you can post your works to Art Gallery App!!");
@@ -62,6 +63,7 @@ const LogIn = () => {
             <Aside>
               <LabelText htmlFor="username">Username</LabelText>
               <InputText
+                autoComplete="off"
                 id="username"
                 required
                 onChange={(e) => setUserName(e.target.value)}

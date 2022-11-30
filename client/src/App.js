@@ -10,7 +10,7 @@ function App() {
   const [isLoginChecked, setIsLoginChecked] = useState(false);
 
   useEffect(() => {
-    const { token } = localStorage;
+    const { token } = localStorage; // get the token from localStorage
     if (token) {
       // If the token is stored in localStorage only in the login component, although it still remains in localStorage,
       // the token will be removed from the axios instance when moving to another page.

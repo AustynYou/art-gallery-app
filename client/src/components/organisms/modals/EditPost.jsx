@@ -12,8 +12,7 @@ const ModalEditPost = ({ postList, idx, onClose }) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `Edit Post`;
+    document.title = `Edit Post`;
   }, []);
 
   useEffect(() => {

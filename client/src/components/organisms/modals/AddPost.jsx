@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { Backdrop, ModalContainer } from "../../atoms/modal";
 import { postPosts } from "../../../apis/post";
@@ -11,10 +12,10 @@ const ModalAddPost = ({ onClose }) => {
   const [imageList, setImageList] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `New Post`;
+    document.title = `New Post`;
   }, []);
 
   const handleClick = () => {
@@ -37,7 +38,7 @@ const ModalAddPost = ({ onClose }) => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     const promiseList = imageList.map(({ file }) => uploadImage(file));
     // uploadImage(fileList[0]),
     // uploadImage(fileList[1]),
@@ -46,6 +47,11 @@ const ModalAddPost = ({ onClose }) => {
     const fileList = await Promise.all(promiseList);
 
     postPosts({ fileList, content });
+    let modal = e.target.parentElement.parentElement;
+    let backdrop = e.target.parentElement.parentElement.previousSibling;
+    modal.style.display = "none"
+    backdrop.style.display = "none"
+
   };
 
   const handleContentChange = (e) => setContent(e.target.value);

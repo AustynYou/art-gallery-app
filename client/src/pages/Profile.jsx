@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -15,6 +16,7 @@ import {
   ProfileImage,
   Button,
 } from "./profileCSS";
+import styled from "styled-components";
 
 import { getMyInfo } from "../apis/user";
 const Profile = () => {
@@ -44,6 +46,11 @@ const Profile = () => {
     },
     []
   );
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/logout");
+  }
 
   return (
     <Container>
@@ -80,9 +87,22 @@ const Profile = () => {
             <OutputTextarea>{memo}</OutputTextarea>
           </Right>
         </Row>
+        <Logout onClick={handleLogout}>Sign out</Logout>
       </Main>
     </Container>
   );
 };
+
+const Logout = styled.button`
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  color: red;
+  font-size: 16px;
+
+
+`;
+
 
 export default Profile;
