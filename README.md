@@ -1,5 +1,7 @@
 # Art Gallery - Social Media App
 
+
+
 ## Implemented features
 <ol>
   <li>
@@ -30,6 +32,9 @@
   </li>
 </ol>
 
+
+
+
 ## Configuration
 ### Backend app.js configration:
 
@@ -41,11 +46,17 @@
 
 4. If node is used without nodemon, I have to turn the server off and on every time modifying the code to work properly. This job is a nuisance. So I used nodemon to automatically restart the server whenever the code is saved. It should be only used for development, so I put it in Dev Dependencies.
 
+
+
+
 ### Connection between Backend and MySQL Database:
 
 1. Node and mysql were connected by passing host, user, password, and database to mysql.createConnection().
 
 2. Host, user, password, and database should not be exposed on the code, so they are stored in the environment variable file using dotenv.
+
+
+
 
 ### Connection between Backend and AWS S3:
 
