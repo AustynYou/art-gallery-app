@@ -41,11 +41,11 @@ export const postPosts = async (data) => {
 
 // Update All data of a post
 // putMyPost -> PUT /posts/my/:postId -> putPostsMyPost
-export const putMyPost = async (data) => {
+export const putPosts = async (data) => {
   try {
     const result = await instance({
       method: "PUT",
-      url: "/posts/edit",
+      url: "/posts",
       data,
     });
     return result.data;
@@ -54,7 +54,8 @@ export const putMyPost = async (data) => {
   }
 };
 
-export const deleteMyPost = async (data) => {
+export const deletePosts = async (data) => {
+  console.log(data);
   try {
     const result = await instance({
       method: "DELETE",

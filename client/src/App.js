@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+
+import { loginState } from "./stores";
 import { useSetRecoilState } from "recoil";
 
 import Router from "./Router";
 import instance from "./apis";
-import { loginState } from "./stores";
 
 function App() {
   const setIsLogin = useSetRecoilState(loginState);

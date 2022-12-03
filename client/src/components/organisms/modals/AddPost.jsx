@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { Backdrop, ModalContainer } from "../../atoms/modal";
 import { postPosts } from "../../../apis/post";
@@ -12,7 +11,6 @@ const ModalAddPost = ({ onClose }) => {
   const [imageList, setImageList] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
   const [content, setContent] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = `New Post`;
@@ -30,7 +28,6 @@ const ModalAddPost = ({ onClose }) => {
       const file = files[i];
       const reader = new FileReader();
       reader.onloadend = () => {
-        console.log(reader.result);
         setImageList((prev) => [...prev, { preview: reader.result, file }]);
         setIsSelected(true);
       };
@@ -47,6 +44,7 @@ const ModalAddPost = ({ onClose }) => {
     const fileList = await Promise.all(promiseList);
 
     postPosts({ fileList, content });
+
     let modal = e.target.parentElement.parentElement;
     let backdrop = e.target.parentElement.parentElement.previousSibling;
     modal.style.display = "none"

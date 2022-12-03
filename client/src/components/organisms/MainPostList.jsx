@@ -3,21 +3,28 @@ import MainPostImageList from "./MainPostImageList";
 import moment from "moment";
 import "moment/locale/en-ca";
 
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import { ModalEditPost } from "./modals";
+import { deletePosts } from "../../apis/post"
 
 const MainPostList = ({ postList }) => {
   const [open, setOpen] = useState(false);
   const [showModalEditPost, setShowModalEditPost] = useState(false);
   const [postIdx, setPostIdx] = useState(-1);
-  const postEl = useRef(null);
 
   const setTime = (e) => {
     return moment(e).format(`llll`);
   };
 
-  const goEdit = (e) => {
+  // useEffect(()=>{
+  //   console.log(postIdx);
+  //   setPostIdx(postIdx)
+  // }, [postIdx])
+
+  const goEdit = (id) => (e) => {
+    console.log(id);
+    // setPostIdx(id)
     setOpen(!open);
     let thisDropdownMenu = e.target.parentElement;
     if (!open) {
@@ -37,10 +44,23 @@ const MainPostList = ({ postList }) => {
     setShowModalEditPost(true);
   };
 
-  const handleClickDelete = (e) =>{
-    alert("Are you sure to delete this post?")
+  const handleEllipsis = (e)=>{
+    setOpen(!open);
+
+    let thisDropdownMenu = e.target.nextElementSibling;
+    if (!open) {
+      thisDropdownMenu.style.display = "flex";
+    } else {
+      thisDropdownMenu.style.display = "none";
+    }
+  }
+
+  const handleClickDelete = (e)=> {
+    // console.log(id);
+    // alert("Are you sure to delete this post?")
     let thisPost = e.target.parentElement.parentElement.parentElement.parentElement;
     thisPost.remove();
+    // await deleteMyPosts(id);
   }
 
   return (
@@ -57,7 +77,7 @@ const MainPostList = ({ postList }) => {
               created_at,
               user_id,
             }) => (
-              <Post ref={postEl} key={id}>
+              <Post key={id}>
                 <Header>
                   <article>
                     <ProfileImageWrapper>
@@ -68,18 +88,10 @@ const MainPostList = ({ postList }) => {
                   <NavItem className={id}>
                     <EllipsisIcon
                       src={require("../../icon/ellipsis.png")}
-                      onClick={async (e) => {
-                        setOpen(!open);
-                        let thisDropdownMenu = e.target.nextElementSibling;
-                        if (!open) {
-                          thisDropdownMenu.style.display = "flex";
-                        } else {
-                          thisDropdownMenu.style.display = "none";
-                        }
-                      }}
+                      onClick={handleEllipsis}
                     />
                     <DropdownMenu>
-                      <DropdownItem onClick={goEdit}>Edit</DropdownItem>
+                      <DropdownItem onClick={goEdit(id)}>Edit</DropdownItem>
                       <DropdownItem onClick={handleClickDelete}>Delete</DropdownItem>
                     </DropdownMenu>
                   </NavItem>

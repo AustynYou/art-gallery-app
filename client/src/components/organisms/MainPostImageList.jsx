@@ -56,7 +56,6 @@ const ImageList = styled.div`
 const ImageWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
-  overflow: hidden;
 `;
 const Image = styled.img`
   width: 100%;
