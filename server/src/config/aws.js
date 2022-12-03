@@ -8,7 +8,7 @@ import multerS3 from "multer-s3";
 const accessKeyId = process.env.S3_KEY;
 const secretAccessKey = process.env.S3_SECRET;
 
-const s3 = new AWS.S3({ accessKeyId, secretAccessKey });
+const s3 = new AWS.S3({ accessKeyId, secretAccessKey }); // connect to AWS S3 service
 const bucket = process.env.S3_BUCKET;
 
 const config = {
