@@ -21,6 +21,8 @@ Client: `Responsive Web Design`,`Javascript ES6`, `React`, `styled-component`, `
 
 Server: `Node JS`, `Express`, `logger`, `cors`, `nodemon`, `JWT`, `AWS`, `multer`, `multerS3`, `dotenv`, `mysql2`
 
+Database: `MySQL Workbench`
+
 Others: `ESLint`, `Prettier`
 
 <br />
