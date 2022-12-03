@@ -65,7 +65,7 @@ Others: `ESLint`, `Prettier`
 <br />
 
 ## 🔧 Configuration
-### Backend app.js configration:
+### - Backend app.js configration:
 
 1. express() was put into app which is variable and allowed to be executed. 
 
@@ -75,13 +75,13 @@ Others: `ESLint`, `Prettier`
 
 4. If node is used without nodemon, I have to turn the server off and on every time modifying the code to work properly. This job is a nuisance. So I used nodemon to automatically restart the server whenever the code is saved. It should be only used for development, so I put it in Dev Dependencies.
 
-### Connection between Backend and MySQL Database:
+### - Connection between Backend and MySQL Database:
 
 1. Node and mysql were connected by passing host, user, password, and database to mysql.createConnection().
 
 2. Host, user, password, and database should not be exposed on the code, so they are stored in the environment variable file using dotenv.
 
-### Connection between Backend and AWS S3:
+### - Connection between Backend and AWS S3:
  <ol>
     <li>
       Using access key, secret key to connect to AWS S3 service. The access key and secret key should not be exposed  on the code, so dotenv is used to store them in the environment variable file.
