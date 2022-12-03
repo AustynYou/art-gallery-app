@@ -48,8 +48,7 @@ Others: `ESLint`, `Prettier`
     <li><strong>State management:</strong> All components share the global loginStatus by managing with <strong>Recoil</strong>.</li>
   </ol>
   </ol>
-3. <strong>Rendered posts on the main page using getPostsMain API function:</strong> Made a <strong>SQL Query</strong>  to fetch 30 posts from the post table. Using <strong>JOIN</strong>, user and image related to each post were brought. Considering the case where there are multiple images per post, <strong>GROUP_CONCAT</strong> the url from the image table and used the <strong>split(”,”)</strong> method to create an array. Then the processed data is sent to the client.
-
+3. <strong>Rendered posts on the main page using getPostsMain API function:</strong> Made a <strong>SQL Query</strong>  to fetch 30 posts from the post table. Using <strong>JOIN</strong>, user and image related to each post were brought. Considering the case where there are multiple images per post, <strong>GROUP_CONCAT</strong> the url from the image table and used the <strong>split(”,”)</strong> method to create an array. Then the processed data is sent to the client.<br />
 4. <strong>Multi-image posting feature:</strong> By using <strong>useRef</strong>, &lt;input type=“file” /&gt; tag can be clicked indirectly.
   <ol>
   <ol>
