@@ -17,7 +17,7 @@
     </ol>
   </li>
   <li>
-    Rendered posts on the main page using getPostsMain API function : Made a <strong>SQL Query</strong>  to fetch 30 posts from the post table. Using <strong>JOIN</strong>, user and image related to each post were brought. Considering the case where there are multiple images per post, <strong>GROUP_CONCAT</strong> the url from the image table and used the <strong>split(”,”)</strong> method to create an array. Then the processed data is sent to the client.
+    <strong>Rendered posts on the main page using getPostsMain API function:</strong> Made a <strong>SQL Query</strong>  to fetch 30 posts from the post table. Using <strong>JOIN</strong>, user and image related to each post were brought. Considering the case where there are multiple images per post, <strong>GROUP_CONCAT</strong> the url from the image table and used the <strong>split(”,”)</strong> method to create an array. Then the processed data is sent to the client.
   </li>
   <li>
     <strong>Multi-image posting feature:</strong> By using <strong>useRef</strong>, &lt;input type=“file” /&gt; tag can be clicked indirectly.
@@ -59,10 +59,26 @@
 
 
 ### Connection between Backend and AWS S3:
+ <ol>
+    <li>
+      Using access key, secret key to connect to AWS S3 service. The access key and secret key should not be exposed  on the code, so dotenv is used to store them in the environment variable file.
+    </li>
+    <li>
+      <strong>Set the config settings of multerS3:</strong> 
+      <ol>
+        <li><strong>acl: "public-read"</strong> means file access permission, set to read-only as public.</li>
+        <li><strong>metaData:</strong> file which is field of the form</li>
+        <li>key: file name 
+          <ol>
+            <li><strong>Date.new().toString()</strong> was used to prevent file names from overlapping.</li>
+            <li><strong>file.originalname</strong> was used to specify the extension name.</li>
+          </ol>
+      </ol>
+    </li>
+  </ol>
 
-1. Using access key, secret key to connect to AWS S3 service. The access key and secret key should not be exposed  on the code, so dotenv is used to store them in the environment variable file.
 
-2. I set the config settings of multerS3: (1)acl: "public-read": file access permission = uploaded as public, but set to read-only (2) set metaData: file which is field of the form (3) key: file name To prevent file names from overlapping, Date.new().toString() was used, and file.originalname was used to specify (=clarify) the extension name.
+
 
 ## Room for Improvement: 
 
