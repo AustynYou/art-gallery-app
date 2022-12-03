@@ -1,6 +1,8 @@
 # Art Gallery - Social Media App
 
-
+<br />
+<br />
+<br />
 
 ## Implemented features
 <ol>
@@ -32,8 +34,9 @@
   </li>
 </ol>
 
-
-
+<br />
+<br />
+<br />
 
 ## Configuration
 ### Backend app.js configration:
@@ -46,8 +49,9 @@
 
 4. If node is used without nodemon, I have to turn the server off and on every time modifying the code to work properly. This job is a nuisance. So I used nodemon to automatically restart the server whenever the code is saved. It should be only used for development, so I put it in Dev Dependencies.
 
-
-
+<br />
+<br />
+<br />
 
 ### Connection between Backend and MySQL Database:
 
@@ -56,6 +60,9 @@
 2. Host, user, password, and database should not be exposed on the code, so they are stored in the environment variable file using dotenv.
 
 
+<br />
+<br />
+<br />
 
 
 ### Connection between Backend and AWS S3:
@@ -68,7 +75,7 @@
       <ol>
         <li><strong>acl: "public-read"</strong> means file access permission, set to read-only as public.</li>
         <li><strong>metaData:</strong> file which is field of the form</li>
-        <li>key: file name 
+        <li><strong>key:</strong> file name in Bucket of S3
           <ol>
             <li><strong>Date.new().toString()</strong> was used to prevent file names from overlapping.</li>
             <li><strong>file.originalname</strong> was used to specify the extension name.</li>
@@ -77,10 +84,12 @@
     </li>
   </ol>
 
+<br />
+<br />
+<br />
 
 
-
-## Room for Improvement: 
+## Room for Improvement 
 
 1. If post APIs using a path variable are created and if there is global state management system for posts, edit and delete post features can be more easily added.
 2. If access token and refresh token were used, it would be possible to have a more secure security system.
