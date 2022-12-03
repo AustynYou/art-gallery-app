@@ -5,7 +5,7 @@ import {
   postUsersToken,
   getUsersMyInfo,
   patchUsersMyProfileImage,
-  putUsersMyInfo,
+  patchUsersMyInfo,
   // deleteUsersMyInfo
 } from "../controllers/users.js";
 
@@ -19,7 +19,7 @@ router.get("/my", getUsersMyInfo);
 // getMyInfo ->  GET  /users/my -> getUsersMyInfo
 router.patch("/my/profile-image", patchUsersMyProfileImage);
 // patchMyProfileImage -> PATCH /users/my/profile-image -> patchUsersMyProfileImage
-router.put("/my", putUsersMyInfo);
-// putMyInfo ->  PUT  /users/my -> putUsersMyInfo
+router.patch("/my", patchUsersMyInfo);
+// patchMyInfo ->  PUT  /users/my -> patchUsersMyInfo
 // router.delete("/my", deleteUsersMyInfo);
 export default router;

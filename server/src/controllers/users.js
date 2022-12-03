@@ -152,7 +152,7 @@ export const patchUsersMyProfileImage = async (req, res) => {
 };
 
 // Edit user info
-export const putUsersMyInfo = async (req, res) => {
+export const patchUsersMyInfo = async (req, res) => {
   const token = req.headers.authorization;
 
   let payload;

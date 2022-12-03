@@ -12,8 +12,8 @@ export const getPostsMain = async (req, res) => {
     GROUP BY post.id
     ORDER BY post.created_at DESC
     LIMIT 30;
-  `;
-
+  `; // post.* means all of the posts in DB
+  // several images have the same post_id -> using GROUP_CONCAT(), concat these images
   const [rows] = await conn.query(query);
 
   const postList = rows.map((post) => {
@@ -63,7 +63,7 @@ export const postPosts = async (req, res) => {
 };
 
 // Edit a post
-export const putPostsMyPost = async (req, res) => {
+export const putPosts = async (req, res) => {
   const token = req.headers.authorization;
 
   let payload;
@@ -97,7 +97,7 @@ export const putPostsMyPost = async (req, res) => {
   res.send({ success: true });
 };
 
-export const deletePostsMyPost = async (req, res) => {
+export const deletePosts = async (req, res) => {
   const token = req.headers.authorization;
 
   let payload;
@@ -108,12 +108,15 @@ export const deletePostsMyPost = async (req, res) => {
     console.log(token);
     return res.status(401).send({ success: false });
   }
+  console.log(req);
+  console.log(req.body);
+  console.log(req.body.id);
 
-  const { id } = req.body;
+  console.log(id);
   const query = `
     DELETE FROM post
     WHERE id = ${id}
   `;
   await conn.query(query);
   res.send({ success: true });
-}
+};

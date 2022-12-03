@@ -17,7 +17,7 @@ import {
 } from "./profileCSS";
 import { useNavigate } from "react-router-dom";
 
-import { getMyInfo, patchMyProfileImage, putMyInfo } from "../apis/user";
+import { getMyInfo, patchMyProfileImage, patchMyInfo } from "../apis/user";
 import { uploadImage } from "../apis/upload";
 
 const EditProfile = () => {
@@ -58,7 +58,7 @@ const EditProfile = () => {
   };
 
   const handleSubmit = (e) => {
-    putMyInfo(form);
+    patchMyInfo(form);
     alert("Successfully Edited!!");
     navigate(-1);
   };

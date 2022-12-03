@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Backdrop, ModalContainer } from "../../atoms/modal";
 
-import { postPosts } from "../../../apis/post";
+import { putPosts } from "../../../apis/post";
 import { uploadImage } from "../../../apis/upload";
 
 const ModalEditPost = ({ postList, idx, onClose }) => {
@@ -47,7 +47,7 @@ const ModalEditPost = ({ postList, idx, onClose }) => {
 
     const fileList = await Promise.all(promiseList);
 
-    postPosts({ fileList, content });
+    putPosts({ fileList, content });
   };
 
   const handleContentChange = (e) => setContent(e.target.value);

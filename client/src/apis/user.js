@@ -64,11 +64,11 @@ export const patchMyProfileImage = async (data) => {
 // PATCH : 리소스의 일부를 업데이트 한다.
 
 // Update All data of user
-// putMyInfo -> PUT /users/my -> putUsersMyInfo
-export const putMyInfo = async (data) => {
+// patchMyInfo -> PUT /users/my -> patchUsersMyInfo
+export const patchMyInfo = async (data) => {
   try {
     const result = await instance({
-      method: "PUT",
+      method: "PATCH",
       url: "/users/my",
       data,
     });
