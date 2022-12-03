@@ -1,15 +1,15 @@
-# Art Gallery - Social Media App
+# 🖼 Art Gallery - Social Media App
 
 <br />
 
-## 🖼 Project Introduction
+## 🌃 Project Introduction
 
 > Web application for posting and viewing photos taken by photographers
 
 <br />
 <br />
 
-## ⌛️ Webs Development Timeline
+## 🗓 Website Timeline
 - Jul 15, 2022 ~ Dec 1, 2022
 
 <br />
@@ -17,7 +17,7 @@
 
 ## 🛠 Used Skills
 
-Client: `Responsive Web`,`Javascript ES6`, `React`, `styled-component`, `font-awesome`, `axios`, `Recoil`, `FileReader`, `FormData`
+Client: `Responsive Web Design`,`Javascript ES6`, `React`, `styled-component`, `font-awesome`, `axios`, `Recoil`, `FileReader`, `FormData`
 
 Server: `Node JS`, `Express`, `logger`, `cors`, `nodemon`, `JWT`, `AWS`, `multer`, `multerS3`, `dotenv`, `mysql2`
 
@@ -28,9 +28,9 @@ Others: `ESLint`, `Prettier`
 
 ## 💡 Project Details - Core Features
 1. User registration, login system
-2. Users can upload a post with images.
+2. Upload a post with images.
 3. View posts with carousel
-4. User can edit user information and update the profile image on the profile page.
+4. Edit user information and Update profile image on the profile page.
 
 <br />
 <br />
