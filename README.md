@@ -187,7 +187,7 @@ Upload post image to S3 Bucket: `POST /upload/image`
 
 ## 🧐 Room for Improvement 
 
-1. If post APIs using a path variable are created and if there is global state management system for posts, edit and delete post features can be more easily added.
+1. If post APIs using a path variable are created and if there is global state management system for posts, edit and delete post features can be more easily added. However, I didn't want to make a post detail page just to add edit feature.
 2. If access token and refresh token were used, it would be possible to have a more secure security system.
 3. It is too easy to manipulate to determine whether users have logged in or not by whether there is a token in localStorage. To make a long story short, this is not enough to be more secure. Whether this token is valid should be verified. This verification can be done by the server because only the server knows the secretKey
 4. LogoutCheck component as well as LoginCheck component could be created. When Logout check component keeps track on it, if logged users come to the /login or /signup, it can kick them out.
