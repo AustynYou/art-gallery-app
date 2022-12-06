@@ -59,7 +59,7 @@ Others: `ESLint`, `Prettier`
     <li><strong>Uploaded images file to S3 and passed AWS S3 URL to the client:</strong> In the <strong>middleware</strong> of the imageUpload Router(), <strong>multer</strong> uploaded files one by one to the <strong>Bucket</strong> of <strong>S3</strong>. And the controller received the return of the middleware, sent the AWS S3 URL from req.file.location to the client.</li>
   </ol>
   </ol>
-5. <strong>Created carousel post:</strong> When the width of the browser <strong>resize</strong>d, found out the current width of the container using <strong>useRef</strong> and <strong>getComputedStyle()</strong>. Managed the width state with useState. Whenever the containerWidth or activeIndex changes, the ImageList component moved its position using css <strong>transform</strong>, and styled overflow:hidden to the container.
+5. <strong>Created Carousel post from scratch:</strong> When the width of the browser <strong>resize</strong>d, found out the current width of the container using <strong>useRef</strong> and <strong>getComputedStyle()</strong>. Managed the width state with useState. Whenever the containerWidth or activeIndex changes, the ImageList component moved its position using css <strong>transform</strong>, and styled overflow:hidden to the container.
 
 <br />
 <br />
